@@ -1,7 +1,6 @@
 *
 !.gitignore
 !.zshrc
-!.zprofile
 !.tmux.conf
 !.config
 !.config/nvim
