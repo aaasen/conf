@@ -8,6 +8,7 @@ Plug 'mxw/vim-jsx'
 Plug 'mhartington/oceanic-next'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'neomake/neomake'
+Plug 'alecthomas/gometalinter'
 
 call plug#end()
 
@@ -22,6 +23,9 @@ let mapleader = ","
 " split opening
 set splitbelow
 set splitright
+
+" no line wrapping
+set nowrap
 
 " fzf
 nnoremap <C-P> :FZF<CR>
@@ -39,10 +43,13 @@ set tabstop=4
 set shiftwidth=4
 set expandtab
 
+autocmd FileType go setlocal noexpandtab " gofmt uses tabs
+
 " jsx
 let g:jsx_ext_required = 0 " jsx syntax highlighting in js files
 autocmd Filetype javascript setlocal et ts=2 sw=2 sts=2
 autocmd Filetype less setlocal et ts=2 sw=2 sts=2
+autocmd Filetype yaml setlocal et ts=2 sw=2 sts=2
 
 " keep selection after indent
 vnoremap < <gv
@@ -58,4 +65,7 @@ nmap <Leader><Space>p :lprev<CR>      " previous error/warning
 
 " eslint
 let g:neomake_javascript_enabled_makers = ['eslint']
+
+" gometalinter
+let g:neomake_go_gometalinter_args = ['--config=~/dev/go/src/github.com/allenai/beaker/gometalinter-config.json']
 
